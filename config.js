@@ -1,69 +1,21 @@
-const fs = require('fs');
-const { Sequelize } = require('sequelize');
-if (fs.existsSync('config.env')) require('dotenv').config({ path: './config.env' });
-function convertToBool(text, fault = 'true') {
-    return text === fault ? true : false;
-}
-DATABASE_URL = process.env.DATABASE_URL === undefined ? './bot.db' : process.env.DATABASE_URL;
-DEBUG = process.env.DEBUG === undefined ? false : convertToBool(process.env.DEBUG);
+const toBool = (x) => x == 'true'
+const { existsSync } = require('fs')
+if (existsSync('config.env')) require('dotenv').config({ path: './config.env' })
 module.exports = {
-    VERSION: 'V 1.0.0',
-    SESSION_ID: process.env.SESSION_ID || '',
-    U_STATUS: process.env.U_STATUS || 'true',
-    WORKTYPE: process.env.WORKTYPE || 'public',
-    OWNER : "917025099154",
-    BRANCH: 'master',
-    SEND_READ: process.env.SEND_READ === undefined ? false : convertToBool(process.env.SEND_READ),
+    VERSION: 'V 1.0.0', // bot version
+    SESSION_ID: process.env.SESSION_ID || 'inrl~7TrTGQ+yF6L20mrb5T/mf/eL3SzJNItSF8cGiQ',//enter your ssid to run bot
+    MONGO_URL : process.env.MONGO_URI,//mongo url;
+    MENSION: {
+        MENSION_AUDIO : process.env.MENSION_AUDIO || "https://i.imgur.com/iUOGcyF.mp4,https://i.imgur.com/e2PKT60.mp4,https://i.imgur.com/5NZDe8m.mp4,https://i.imgur.com/iaHKsGW.mp4, https://i.imgur.com/NGWrUkQ.mp4,https://i.imgur.com/GUtD1hr.mp4, https://i.imgur.com/PBuALN3.mp4, https://i.imgur.com/79YoX98.mp4, https://i.imgur.com/HzIz3ls.mp4, https://i.imgur.com/2jzZauR.mp4, https://i.imgur.com/oKVVwIj.mp4, https://i.imgur.com/AzqHkeV.mp4, https://i.imgur.com/pf1BWXN.mp4, https://i.imgur.com/N2N6S7C.mp4, https://i.imgur.com/IrEdvwL.mp4, https://i.imgur.com/4fdJUoj.mp4, https://i.imgur.com/FaOtaF5.mp4, https://i.imgur.com/wsrdnP8.mp4,https://i.imgur.com/imr3bC8.mp4, https://i.imgur.com/Xgzkbsk.mp4, https://i.imgur.com/0WML13D.mp4, https://i.imgur.com/b491tUX.mp4, https://i.imgur.com/GuAnUuf.mp4, https://i.imgur.com/yVwoqYp.mp4, https://i.imgur.com/WgMgTBP.mp4,https://i.imgur.com/LQBlI1y.mp4,https://i.imgur.com/EQn2BvM.mp4, https://i.imgur.com/SIj26aP.mp4,https://i.imgur.com/IWlTmTE.mp4, https://i.imgur.com/c4E7E1k.mp4, https://i.imgur.com/D5PREWe.mp4,https://i.imgur.com/JL6FWpS.mp4, https://i.imgur.com/rvD8PlZ.mp4, https://i.imgur.com/ChUKdPk.mp4, https://i.imgur.com/z9oQd4N.mp4, https://i.imgur.com/z9oQd4N.mp4, https://i.imgur.com/vkdcGHu.mp4, https://i.imgur.com/vkdcGHu.mp4,https://i.imgur.com/K2QlmTc.mp4, https://i.imgur.com/AeGNKo3.mp4, https://i.imgur.com/Qe5khtL.mp4, https://i.imgur.com/lCZl3Af.mp4, https://i.imgur.com/AsEfT76.mp4, https://i.imgur.com/KraBTPf.mp4, https://i.imgur.com/fbvDI1g.mp4,https://i.imgur.com/uazVUOH.mp4, https://i.imgur.com/YN04ot5.mp4, https://i.imgur.com/YN04ot5.mp4",
+        MENSION_IMG : process.env.MENSION_IMG || "https://images.wallpaperscraft.com/image/single/ball_planet_shroud_136916_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_glow_hand_190683_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_hands_glow_166373_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_glow_mask_140903_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_glow_stone_169306_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_glow_reflection_165921_4072x2697.jpg,  https://images.wallpaperscraft.com/image/single/ball_glow_silhouette_149491_1920x2304.jpg,  https://images.wallpaperscraft.com/image/single/ball_glow_line_light_28298_1680x1050.jpg,  https://images.wallpaperscraft.com/image/single/ball_circles_glow_168614_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_circles_neon_137700_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_neon_backlight_147061_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_reflection_neon_168932_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/ball_reflection_hand_184546_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/crystal_ball_ball_hand_142442_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/building_water_minimalism_198457_3145x4718.jpg,  https://images.wallpaperscraft.com/image/single/triangle_inverted_black_white_92770_2560x1600.jpg,  https://images.wallpaperscraft.com/image/single/lamp_electricity_minimalism_128251_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/lamp_electricity_spiral_luminescence_120309_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/lamp_spiral_electricity_light_119929_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/skyscraper_building_architecture_sky_bottom_view_118409_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/skyscraper_bottom_view_building_187222_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/skyscraper_architecture_bottom_view_123571_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/skyscraper_architecture_bottom_view_136419_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/cherries_cherry_berry_122190_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/water_hand_sea_horizon_118181_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/water_hand_stones_148518_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/water_stream_flow_169694_1440x2560.jpg,        https://images.wallpaperscraft.com/image/single/water_horizon_dusk_175987_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/water_moon_dusk_191709_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/water_horizon_sky_164418_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/water_sky_horizon_140454_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/water_horizon_sunset_168843_1440x2560.jpg,  https://images.wallpaperscraft.com/image/single/moon_phases_black_175210_3648x5472.jpg,  https://images.wallpaperscraft.com/image/single/moon_black_sky_191125_2318x2864.jpg,  https://images.wallpaperscraft.com/image/single/stains_paint_mixing_198500_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/stains_paint_mixing_195514_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/stains_liquid_paint_191590_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/stains_liquid_paint_147522_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/stains_liquid_paint_151928_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/stains_abstraction_texture_157950_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/stains_paint_liquid_146393_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/girl_helmet_cyberpunk_194603_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/girl_alone_autumn_192003_2160x3840.jpg,  https://images.wallpaperscraft.com/image/single/girl_loneliness_alone_183388_2160x3840.jpg"
+    },
     HEROKU: {
         HEROKU: process.env.HEROKU === undefined ? false : convertToBool(process.env.HEROKU),
         API_KEY: process.env.HEROKU_API_KEY || '',
         APP_NAME: process.env.HEROKU_APP_NAME || ''
     },
-    profile: {
-    ownerName: "inrl", 
-    ownerNumb: "917025099154", 
-    botName: "inrl-bot-md", 
-  },
-    reply: {
-    notFound: "This Command not created. it was creating",
-    success: "Done ✓",
-    admin: "This Feature Is Only For Admin",
-    botAdmin: "Bot Must Be Admin First", 
-    owner: "This Feature Is Only For Owner",
-    group: "Feature Used Only For Groups!", 
-    private: "Features Used Only For Private Chat!", 
-    bot: "This Feature Is Only For Bot", 
-    wait: "In process..",
-    linkm: "", 
-    error: "Error!!", 
-    endLimit: "Your Daily Limit Has Expired, The Limit Will Be Reset Every 12 Hours",
-    ban: "You have been banned by the owner, if you want to be unbanned, chat owner", 
-    nsfw: "The nsfw feature has not been activated, please contact the admin to activate", 
-    banChat: "The bot was banned in this group, please contact the owner to unban", 
-  },
-    setting: {
-    blockchat: [], // Your block chat Jids
-  },
-  auto: {
-    chat: {
-      group: false, // Chat Bot In Group | u can set true or false
-      inbox: false, // chat bot in inbox | u can set true or false
-    },
-    reply: {
-      sticker: false, // Boolean | ===== It not created now ======
-      audio: false, // Boolean | ===== It not created now ======
-    },
-    presence: {
-      is: false, // U Can on or off this () | u can set true or false
-      value: "recording", // It has two types | u can set 'recoding' or 'typing'
-    },
-    read: false, // Boolean | ===== It not created now ======
-  },
-    DATABASE_URL: DATABASE_URL,
-    DATABASE: DATABASE_URL === './bot.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
-    NO_ONLINE: process.env.NO_ONLINE === undefined ? true : convertToBool(process.env.NO_ONLINE),
-    SUDO: process.env.SUDO === undefined ? false : process.env.SUDO,
-    DEBUG: DEBUG,
-    ACR_A: "ff489a0160188cf5f0750eaf486eee74",
-    ACR_S: "ytu3AdkCu7fkRVuENhXxs9jsOW4YJtDXimAWMpJp"
+    WEB : process.env.WEB || "https://tinyurl.com/ycks3s8p",//your website url
+    YT : process.env.YT || "https://tinyurl.com/36r3668n",//your yt url
+    VIDEO : "https://tinyurl.com/3x38ajmn",//turtorial video to watch how to use bot
+    WAGRP : process.env.WAGRP || 'https://tinyurl.com/f5wh55mk',//your wa group url
     };

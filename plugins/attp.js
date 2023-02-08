@@ -1,33 +1,31 @@
-const bots = require("../lib/perfix");
-const lang = bots.getString("ttp");
+const { inrl,config } = require('../lib');
 const axios = require("axios");
+const {getVar}=require('../lib/database/variable');
 
-bots.bot( { pattern: ["ttp"], sucReact: "❣️", category: ["all", "create"], },
+inrl( { pattern: ["ttp"], sucReact: "🖼", category: ["all", "create"], type : "misc"},
   async (message, client) => {
-    if (!message.client.text) { global.catchError = true; return await client.sendErrorMessage( message.from, "need a text", message.key, message ); }
+    if (!message.client.text) return await message.send("need text");
     var uri = encodeURI(message.client.text);
     try {
       var resImage = await axios.get( "https://api.xteam.xyz/ttp?file&text=" + uri, { responseType: "arraybuffer" } );
     } catch (error) {
-      global.catchError = true; 
-      return await client.sendErrorMessage( message.from, error, message.key, message );
+      return await message.send("error"+error);
     }
-    await client.sendMessage( message.from, { image: Buffer.from(resImage.data), caption: bots.config.exif.cap }, { quoted: message } );
-    global.catchError = false;
+    let data = await getVar();
+    let {CAPTION}=data.data[0]
+    return await client.sendMessage( message.from, { image: Buffer.from(resImage.data), caption: CAPTION }, { quoted: message } );
   }
 );
 
-bots.bot( { pattern: ["attp"], desc: "to attp cmd", sucReact: "☯", category: ["all", "create"], },
+inrl( { pattern: ["attp"], desc: "for attp img", sucReact: "😛", category: ["all", "create"], type : "misc"},
   async (message, client) => {
-    if (!message.client.text) {global.catchError = true; return await client.sendErrorMessage(message.from,"need emojis",message.key,message);}
+    if (!message.client.text) return await message.send("need text");
     var uri = encodeURI(message.client.text);
     try {
       var resSticker = await axios.get( "https://api.xteam.xyz/attp?file&text=" + uri, { responseType: "arraybuffer" } );
     } catch (error) { 
-        global.catchError = true; 
-        return await client.sendErrorMessage( message.from, error, message.key, message );
+        return message.send("error"+error);
     }
-    client.sendMessage( message.from, { sticker: Buffer.from(resSticker.data) }, { quoted: message } );
-    global.catchError = false;
+    return await client.sendMessage( message.from, { sticker: Buffer.from(resSticker.data) }, { quoted: message });
   }
 );

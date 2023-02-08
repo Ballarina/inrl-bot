@@ -2,7 +2,7 @@
     "__WHATSJSON__": true,
     "LANGUAGE": "English",
     "LANGCODE": "en",
-    "AUTHOR": "inrl_md",
+    "AUTHOR": "inrl",
     "STRINGS": {
         "_whats": {
             "COMMAND": "Commands",
@@ -179,23 +179,6 @@
             "ERROR": "```I couldn't read this :/```\n*Error:*```{}```",
             "RESULT": "*Language:* ```{}```\n*Here is what I read:* ```{}```"
         },
-        "profile": {
-            "KICKME_DESC": "kickd.",
-            "KICKME": "```kickd```",
-            "PP_DESC": "kickd",
-            "NEED_PHOTO": "need a photo",
-            "PPING": "```profile updating...```",
-            "BLOCK_DESC": "blocking",
-            "UNBLOCK_DESC":"unblocking",
-            "BLOCKED": "blocked",
-            "UNBLOCKED": "Unblocked",
-            "BLOCKED_UPPER": "null",
-            "UNBLOCKED_UPPER": "undifined",
-            "NEED_USER": "need a user to mension!",
-            "JID_DESC": "User's JID ද.",
-            "JID": "```JID address of``` @{} ```: {}```",
-            "JID_CHAT": "```Chat's JID address: {}```"  
-        },
         "removebg": {
             "REMOVEBG_DESC": "Removes the background of the photos.",
             "NEED_PHOTO": "*Give me a photo!*",
@@ -266,9 +249,9 @@
             "UPDATE_NOW_DESC": "It makes updates.",
             "UPDATING": "Updating..🧞‍♂️",
             "INVALID_HEROKU": "*❌ Your Heroku app name or api key wrong!*",
-            "UPDATED": "**◄━━━━━━━⦁⦁◯⦁⦁━━━━━━━━►*\n  *⦁◊═⦁INRL - MD⦁═◊⦁*\n*Updated!*",
-            "UPDATED_LOCAL": "*👸 inrl-md Updated!*",
-            "AFTER_UPDATE": "*inrl-md Restarting !*",
+            "UPDATED": "**◄━━━━━━━⦁⦁◯⦁⦁━━━━━━━━►*\n  *⦁◊═•inrl⦁═◊⦁*\n*Updated!*",
+            "UPDATED_LOCAL": "*👸 Queen alexa Updated!*",
+            "AFTER_UPDATE": "*Queen alexa Restarting !*",
             "IN_AF": "*Please check* ```HEROKU_APP_NAME``` *and* ```app name``` *They must be same.*\n*If these two values ​​are the same, please restore* ```HEROKU_API_KEY```\n\n_To access these settings, use Heroku >> App >> Settings >> Reavel Config Vars_\n_To renew your API key, follow these steps, Heroku >> Account >> API Key then replace old api key in config vars._"
         },
         "whois": {
@@ -296,6 +279,9 @@
             "LOCATION": "Location",
             "TEMP": "Temperature",
             "DESC": "Description",
+            "HMODD_DESC": "Finds Mod App from happymod",
+            "NEED_APPNAME": "please enter an app name",
+            "NOT_FOUNDMD": "App not found",
             "HUMI": "Humidity",
             "WIND": "Wind Speed",
             "CLOUD": "Cloud",
@@ -313,19 +299,6 @@
             "VALID": "*Please Use As Applicable!* \n*.calc 1 + 2*\n*.calc 3 x 5*\n*.calc 10 / 5*\n*.calc 5 - 2*",
             "PING_DESC": "Measures your ping.",
             "URL": "Shorten the long link."
-        },
-        "conventer": {
-            "MP4TOAUDIO_DESC" :"converting video to audio .",
-            "MP4TOAUDIO_NEEDREPLY": "need a video to convert",
-            "MP4TOAUDIO": "\n```convert video to audio..```\n",
-            "STICKER_DESC": "to make sticker.",
-            "STICKER_NEEDREPLY": "need a photo or video to make sticker",
-            "STICKER": "\n```🔄 creating sticker..```\n",
-            "XMEDIA_DESC" :"for x media",
-            "T_FALSE": "```❌ Incorrect Blend Effect Entered!```\n```🔎 Existing Commands:```\n\n*$dodge* - Applies a pink color filter to the video.\n*$multiply* - Applies a green color filter to the video.\n*$grainmerge* - Increases the contrast of the video.\n*$and* - Applies black lightning effect according to the speed of the video.\n*$or* - Applies a white lightning effect according to the speed of the video.\n*$burn* - Applies green contrast to video.\n*$difference* - Shows the differences by applying green relief to the video.\n*$grainextract* - Shows the differences by applying gray relief to the video.\n*$divide* - Demonstrates the differences by applying a pink relief to the video.\n*$xor* - Applies both green relief and lightning effect to video.\n*$hardmix* - Mixes the colors of the video into a yellow and red tone.\n*$negation* - Turns the dynamics of the video to pink.",
-            "T_NOT": "```💭 You Need To Enter Any Blend Effects!\n```🔎 Existing Commands:```\n\n*$dodge* - Applies a pink color filter to the video.\n*$multiply* - Applies a green color filter to the video.\n*$grainmerge* - Increases the contrast of the video.\n*$and* - Applies black lightning effect according to the speed of the video.\n*$or* - Applies a white lightning effect according to the speed of the video.\n*$burn* - Applies green contrast to video.\n*$difference* - Shows the differences by applying green relief to the video.\n*$grainextract* - Shows the differences by applying gray relief to the video.\n*$divide* - Demonstrates the differences by applying a pink relief to the video.\n*$xor* - Applies both green relief and lightning effect to video.\n*$hardmix* - Mixes the colors of the video into a yellow and red tone.\n*$negation* - Turns the dynamics of the video to pink.",
-            "T_DESC": "Applies the selected TBlend effect to videos.",
-            "ADMIN_DES": "Bot Owner Command list" 
         },
         "mute": {
             "BIRMUTE": "*The group was silenced for 1 minute!*",
@@ -562,7 +535,7 @@
         "react": {
             "INFO": [ "🕐", "🕑", "🕒", "🕚", "🕙", "🕘", "🕗", "🕖", "🕕", "🕔", "🕓", "🕛", "🕜", "🕝", "🕞", "🕟", "🕠", "🕡", "🕢", "🕧", "🕦", "🕤", "🕥", "🕣", "👁‍🗨", "🔵"],
             "SUCCESS": [ "❤", "🖤", "🤎", "💜", "💙", "💚", "💛", "🧡", "🤍", "❣", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟", "💌", "✅", "🟢", "✔", "⭕", "😋", "😍", "😘", "🥰", "🤪", "😇", "🥳" ],
-            "ERROR": [ "💔", "☣", "⚠", "❌", "🛑", "❗", "‼", "⁉", "❓", "🔴", "😥", "😪", "😫", "😴", "🤐", "😤", "😟", "😖", "😞", "🙁", "☹", "😰", "🥵", "🥶", "😱", "🥴", "🤢", "🤮", "🤕", "🤒", "😷", "🤬", "😡", "😠", "🥺", "🤫" ]
+            "ERROR": [ "💔", "☣", "⚠", "❌", "🛑", "❗", "‼", "⁉", "❓", "🔴", "😥", "😪", "😫", "😴", "🤐", "😤", "😟", "😖", "😞", "🙁", "☹", "😰", "🥵", "🥶", "😱", "🥴", "👺", "👽", "🤕", "🤒", "😷", "😎", "😼", "🙀", "🥺", "🤫" ]
         },
         "whats_bot": {
             "ERR": "ERROR: ",
@@ -599,7 +572,6 @@
             "ADON_DESC": "AI  Chat bot on / off.\n⌨️example: AI chat bot on, .adon AI_BOT:true use command.\nAI chat bot off, .adon AI_BOT:false use command.",
             "ADON_MISSING": "```Command disabled.```",
             "ADON_SUCCESS": "```✅Success```",
-            "ADON_INVALID": "```invalid❌️.```",
             "BOT": ":",
             "SONG": "Download song as document",
             "TIKTOK": "Download tik tok video",
