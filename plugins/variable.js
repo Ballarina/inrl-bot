@@ -21,6 +21,7 @@ inrl(
        type : "database"
     },
 	  async (message, client,match) => {
+	  if(!message.client.isCreator) return message.reply('only for owner!!');
       message.reply('use restart cmd after updating variable!');
       if(!match) return message.reply('need id & value,example: setvar react:true');
       let keyID = match.split(':')[0].toUpperCase().trim() || match.toUpperCase().trim();
@@ -32,7 +33,7 @@ inrl(
       let shifted = Update.shift();
       Update = Update.join("").trim();
   } else if(typeof Update == "object"){
-        Update = Update.join("");
+        Update = Update[1];
       }
       if(Update ===undefined) return message.reply('need id & value,example: setvar react:true');
       let {SUDO,BLOCK_CHAT} = await getVar();
@@ -40,7 +41,7 @@ inrl(
   await UpdateVariable("PASSWORD",Update);
 return await message.reply('successfull');
 } else if(keyID == "REACT"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("REACT",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "WARNCOUND"){
@@ -51,11 +52,11 @@ return await message.reply('successfull');
   await UpdateVariable("ALIVE_DATA",Update);
   return await message.reply('successfull');
 } else if(keyID == "U_STATUS"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false');
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false');
   await UpdateVariable("U_STATUS",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "READ_CHAT"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("READ_CHAT",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "BOT_INFO"){
@@ -65,34 +66,34 @@ return await message.reply('successfull');
   await UpdateVariable("BOT_INFO",Update);
   return await message.reply('successfull');
 } else if(keyID == "BGMBOT"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("BGMBOT",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "WORKTYPE"){
-  if(!isTrue(type, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! public or privet')
+  if(!isTrue(type, Update.toLowerCase())) return message.reply('need a valid variable for Update! public or privet')
   await UpdateVariable("WORKTYPE",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "PM_BLOCK"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("PM_BLOCK",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "PREFIX"){
   await UpdateVariable("PREFIX",Update);
   return await message.reply('successfull');
 } else if(keyID == "WELCOME_SET"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("WELCOME_SET",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "EXIT_MSG"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("EXIT_MSG",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "CALL_BLOCK"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("CALL_BLOCK",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "STATUS_VIEW"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("STATUS_VIEW",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "MENSION_TEXT"){
@@ -118,15 +119,15 @@ return await message.reply('successfull');
   await UpdateVariable("BLOCK_CHAT",Update);
   return await message.reply('successfull');
 } else if(keyID == "AUTO_CHAT_PM"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("AUTO_CHAT_PM",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "AUTO_CHAT_GRP"){
-  if(!isTrue(a, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! true or false')
+  if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false')
   await UpdateVariable("AUTO_CHAT_GRP",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "BOT_PRESENCE"){
-  if(!isTrue(response, Update.toLowerCase())) return messsage.reply('need a valid variable for Update! example : - unavailable,available,composing,recording,paused')
+  if(!isTrue(response, Update.toLowerCase())) return message.reply('need a valid variable for Update! example : - unavailable,available,composing,recording,paused')
   await UpdateVariable("BOT_PRESENCE",Update.toLowerCase());
   return await message.reply('successfull');
 } else if(keyID == "AUDIO_DATA"){
@@ -170,6 +171,7 @@ inrl(
        type : "database"
     },
 	   async (message, client, match) => {
+	  if(!message.client.isCreator) return message.reply('only for owner!!');
       let {PASSWORD,REACT,WARNCOUND,ALIVE_DATA,U_STATUS,READ_CHAT,BOT_INFO,BGMBOT,WORKTYPE,PM_BLOCK,PERFIX,WELCOME_SET,EXIT_MSG,CALL_BLOCK,STATUS_VIEW,MENSION_TEXT,LANG,OWNER,PROFILE_STATUS,BLOCK_CHAT,AUTO_CHAT_PM,AUTO_CHAT_GRP,BOT_PRESENCE,AUDIO_DATA,STICKER_DATA,INSTAGRAM,GIT,CAPTION,SUDO} = await getVar();
       value = match.toUpperCase().trim();
       if(!match){
@@ -273,6 +275,7 @@ inrl(
        type : "database"
     },
 	   async (message, client, match) => {
+	   if(!message.client.isCreator) return message.reply('only for owner!!');
 	   if(!match) return message.reply('need variable! values:- sudo,block_chat');
 	   let KeyID = match.split(':')[0].toUpperCase().trim() || match.trim();
 	   let value;
