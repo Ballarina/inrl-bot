@@ -115,8 +115,7 @@ inrl(
     type : 'system'
   },
   async (message, client) => {
-    let data = await getVar();
-    let {FOOTER,BOT_INFO,PREFIX,GIT}=data.data[0];
+    let {FOOTER,BOT_INFO,PREFIX,GIT}=await getVar();
     let perfix  = PREFIX == 'false' ? '' : PREFIX;
       const response = await got("https://api.github.com/repos/inrl-official/inrl-bot-md")
       const json = JSON.parse(response.body);
@@ -136,16 +135,16 @@ inrl(
 let buttonMessage = {
             image: { url: json.owner.avatar_url },
             caption: captIon,
-            footer: Config.FOOTER,
+            footer: FOOTER,
             headerType: 1,
             contextInfo: {
                 externalAdReply: {
                     title: json.name,
                     body: json.description ,
-                    thumbnail: await getBuffer(Config.BOT_INFO.split(',')[2]),
+                    thumbnail: await getBuffer(BOT_INFO.split(',')[2]),
                     mediaType: 2,
-                    mediaUrl: Config.GIT,
-                    sourceUrl: Config.GIT,
+                    mediaUrl: GIT,
+                    sourceUrl: GIT,
                 },
             },
         };
