@@ -4,9 +4,22 @@ let a = ["true", "false"], type = ["privet","public"],response  = ["unavailable"
 //const {exec} = require('chile
 
 function isTrue(a, obj) {
-    for (var i = 0; i < a.length; i++) {
+    for (let i = 0; i < a.length; i++) {
         if (a[i] === obj) {
             return true;
+        }
+    }
+    return false;
+};
+
+let arrayy = ["PASSWORD","REACT","WARNCOUND","ALIVE_DATA","U_STATUS","READ_CHAT","BOT_INFO","BGMBOT","WORKTYPE","PM_BLOCK","PERFIX","WELCOME_SET","EXIT_MSG","CALL_BLOCK","STATUS_VIEW","MENSION_TEXT","LANG","OWNER","PROFILE_STATUS","BLOCK_CHAT","AUTO_CHAT_PM","AUTO_CHAT_GRP","BOT_PRESENCE","AUDIO_DATA","STICKER_DATA","INSTAGRAM","GIT","CAPTION","SUDO", "FOOTER"];
+
+function UpdateV(obj) {
+ let bcU =obj.split(':')[0].toUpperCase();
+  obj = obj.replace(obj.split(':')[0],"")
+    for (let i = 0; i < arrayy.length; i++) {
+        if(bcU.includes(arrayy[i])) {
+            return obj.replace(':','').trim();
         }
     }
     return false;
@@ -27,14 +40,9 @@ inrl(
       let keyID = match.split(':')[0].toUpperCase().trim() || match.toUpperCase().trim();
       let Update;
       if(isTrue(sb, keyID)){
-      Update = message.quoted?message.quoted.sender.split('@')[0].trim() : match.split(':');
-      } else Update = match.split(':');
-      if(typeof Update == "object" && Update.length>2){
-      let shifted = Update.shift();
-      Update = Update.join("").trim();
-  } else if(typeof Update == "object"){
-        Update = Update[1];
-      }
+      Update = message.quoted?message.quoted.sender.split('@')[0].trim() : UpdateV(match.trim());
+      } else Update = UpdateV(match.trim());
+      console.log(Update)
       if(Update ===undefined) return message.reply('need id & value,example: setvar react:true');
       let {SUDO,BLOCK_CHAT} = await getVar();
   if(keyID == "PASSWORD"){
@@ -50,6 +58,10 @@ return await message.reply('successfull');
   return await message.reply('successfull');
 } else if(keyID == "ALIVE_DATA"){
   await UpdateVariable("ALIVE_DATA",Update);
+  return await message.reply('successfull');
+} else if(keyID == "FOOTER"){
+    console.log(Update)
+  await UpdateVariable("FOOTER",Update);
   return await message.reply('successfull');
 } else if(keyID == "U_STATUS"){
   if(!isTrue(a, Update.toLowerCase())) return message.reply('need a valid variable for Update! true or false');
@@ -172,11 +184,13 @@ inrl(
     },
 	   async (message, client, match) => {
 	  if(!message.client.isCreator) return message.reply('only for owner!!');
-      let {PASSWORD,REACT,WARNCOUND,ALIVE_DATA,U_STATUS,READ_CHAT,BOT_INFO,BGMBOT,WORKTYPE,PM_BLOCK,PERFIX,WELCOME_SET,EXIT_MSG,CALL_BLOCK,STATUS_VIEW,MENSION_TEXT,LANG,OWNER,PROFILE_STATUS,BLOCK_CHAT,AUTO_CHAT_PM,AUTO_CHAT_GRP,BOT_PRESENCE,AUDIO_DATA,STICKER_DATA,INSTAGRAM,GIT,CAPTION,SUDO} = await getVar();
+      let {PASSWORD,REACT,WARNCOUND,ALIVE_DATA,U_STATUS,READ_CHAT,BOT_INFO,BGMBOT,WORKTYPE,PM_BLOCK,PERFIX,WELCOME_SET,EXIT_MSG,CALL_BLOCK,STATUS_VIEW,MENSION_TEXT,LANG,OWNER,PROFILE_STATUS,BLOCK_CHAT,AUTO_CHAT_PM,AUTO_CHAT_GRP,BOT_PRESENCE,AUDIO_DATA,STICKER_DATA,INSTAGRAM,GIT,CAPTION,SUDO,data} = await getVar();
+      let {FOOTER} = data[0];
       value = match.toUpperCase().trim();
       if(!match){
    let content = `  PASSWORD :  ${PASSWORD}
    REACT  :  ${REACT}
+   FOOTER :${FOOTER}
    WARNCOUND :  ${WARNCOUND}
    ALIVE_DATA :  ${ALIVE_DATA}
    U_STATUS :  ${U_STATUS}
@@ -263,6 +277,8 @@ return message.reply(`GIT : ${GIT}`);
 return message.reply(`CAPTION : ${CAPTION}`);
 } else if(value == "SUDO"){
 return message.reply(`SUDO : ${SUDO}`);
+} else if(value == "FOOTER"){
+return message.reply(`FOOTER : ${FOOTER}`);
 } else return message.reply('no such variable in yourDB,!if you need all variable;try : getvar');
 })
 // to del variables as sudo  &&chat_block
