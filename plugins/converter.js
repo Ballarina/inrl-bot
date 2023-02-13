@@ -99,7 +99,7 @@ inrl({pattern: ['tts'], desc: "to get text as audio ", sucReact: "💔", categor
         }));
 inrl({pattern: ['mp3','audio'], desc: "to get video as audio ", sucReact: "💥", category: ['all'], type : "converter" }, (async (message, client) => {
           if(!message.quoted) return;
-  if(!message.quoted.audioMessage || !message.quoted.audioMessage)  return message.reply('reply to an video/mp4');
+  if(!message.quoted.audioMessage && !message.quoted.videoMessage)  return message.reply('reply to an video/mp4');
      return await  sendMp4AsMp3(message, client)
             }));
 inrl({pattern: ['trt'], desc: "to get video as audio ", sucReact: "💥", category: ['all'], type : "converter" }, async (message, client, match) => {
