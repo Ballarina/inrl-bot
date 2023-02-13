@@ -17,7 +17,7 @@ inrl(
 	   }, async (message, client, match, cmd) => {
 	if(!message.client.isCreator) return await message.replay("action only for owner!");
 	message.reply('Restarting')
-        exec('pm2 restart all')
+        process.exit(1);
         await message.send('restarted');
 	})
 inrl(
