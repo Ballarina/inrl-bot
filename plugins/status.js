@@ -6,15 +6,16 @@ const {getVar} = require('../lib/database/variable');
 
 inrl({ pattern: ['send','snd'], desc: "it send wa status",sucReact: "⚒️",  category: ["owner"]}, (async (message, client) => {
   let data = await getVar();
-  let {CAPTION}=data.data[0]
+  let {CAPTION}=data.data[0], cap;
 if(!message.quoted) return message.reply("reply to image/video!")
 if (message.quoted.videoMessage) {
+cap = message.quoted.videoMessage.caption || CAPTION;
 let location = await message.quoted.download();
-await client.sendMessage(message.from, { video: location, caption: CAPTION }, { quoted: message });
-await fs.unlinkSync(location)
+return await client.sendMessage(message.from, { video: location, caption: cap }, { quoted: message });
 }else if (!message.quoted.videoMessage && message.quoted.imageMessage) {
-let location =await message.quoted.download()
-return await client.sendMessage(message.from, { image: location, CAPTION }, { quoted: message });
+cap = message.quoted.imageMessage.caption || CAPTION;
+let location = await message.quoted.download()
+return await client.sendMessage(message.from, { image: location, caption: cap }, { quoted: message });
    }
 }));
 inrl({pattern: ['status'], desc: "to scan", sucReact: "💗", category: ['all'],},   async (message, client) => {
