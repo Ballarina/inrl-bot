@@ -79,7 +79,7 @@ inrl(
                 category: ["system", "all"],
                 type : "utility"
 	   },
-	async (message, client) => {
+	async (message, client), match => {
 try{
 let pp, from , cap;
 if(!message.client.isCreator) return await client.sendMessage( message.from, { text: "sorry about thets this cmd only for owner"});
@@ -102,6 +102,6 @@ let captiOn = "```"/*user : ${name}\nid : ${id}\n*/+`status :${status}\nstatus s
 await client.sendMessage(message.from, { image : { url : pp }, caption : captiOn }, { quoted: message });
      }
 } catch(e){
-m.reply('error\n'+e)
+message.reply('error\n'+e)
    }
 });
