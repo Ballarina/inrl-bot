@@ -46,6 +46,7 @@ message.reply(JSON.stringify(e))
 inrl({ pattern: ["kick"], usage: '<mentions|reply>', sucReact: "😤", category: ["group", "all"], type :'group'},
   async (message, client, match) => {
 try {
+if(!match){
   const BotAdmin = await isBotAdmins(message,client);
   const Isadmin = await isAdmin(message, client);
   const {text, document, audio, gift, gclink, video, local, contact, status }= await quoted(message);
@@ -54,6 +55,21 @@ try {
         if(!message.quoted) return mesage.reply('reply to a user');
             await client.groupParticipantsUpdate( message.from, [message.quoted.sender], "remove" );
             return await client.sendMessage(message.from, { text : '_'+message.quoted.sender.split('@')[0] +' kiked fromthe group_'}, { quoted :audio})
+            } else if(match.toLowerCase() == 'all'){
+              if(!message.client.isCreator) return message.send('only for owner!');
+   if(!message.isGroup) return message.reply('this cmd only work on group');
+   const groupMetadata = message.isGroup ? await client.groupMetadata(message.from).catch(e => {}) : ''
+	       const participants = message.isGroup ? await groupMetadata.participants : ''
+           let admins = message.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
+if(!admins.includes(message.sender)) return message.reply('make me admin i can do this');
+participants
+				.filter((U) => !U.admin == true)
+				.map(({ id }) => id)
+                .forEach(async(k)=>{
+             await client.groupParticipantsUpdate( message.from, [k], "remove" );
+        });
+       return message.reply('all group Participants will been kicked!')
+           }
 } catch (e){
 message.reply(JSON.stringify(e))
      }
@@ -70,19 +86,19 @@ try {
         if(match){
         let users = match.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
         const su = await client.groupParticipantsUpdate(message.from, [users], "add" );
-        if(su == '403') {
+        if(su == 403) {
 		message.reply(`Couldn't Add Invite Send`);
 		const code = await client.groupInviteCode(message.from);
 		return await client.sendMessage(users, { text : `https://chat.whatsapp.com/${code}`}, { quoted : text })
-	    } else if (su == '408') {
+	    } else if (su == 408) {
 		message.reply(`Couldn't add @${users.split('@')[0]} because they left the group recently. Try again later.`);
 		const code = await client.groupInviteCode(message.from);
 		return await client.sendMessage(users, { text : `https://chat.whatsapp.com/${code}`}, { quoted : video })
-	    } else if (su == '401') {
+	    } else if (su == 401) {
 		 return message.reply(`Couldn't add @${users.split('@')[0]} because they blocked the bot number.`);
-	    } else if (su == '200') {
+	    } else if (su == 200) {
 		return await client.sendMessage(message.from, { text : '_'+message.quoted.sender.split('@')[0] +' added to the group_'}, { quoted : gclink })
-	    } else if (su == '409') {
+	    } else if (su == 409) {
 		return message.reply(`@${users.split('@')[0]}, Already in Group`);
 	    } else {
 		return await message.reply(JSON.stringify(su));
@@ -90,19 +106,19 @@ try {
         }else if(message.quoted){
         let users = message.quoted.sender;
         const su = await client.groupParticipantsUpdate( message.from, [users], "add" );
-        if(su == '403') {
+        if(su == 403) {
 		message.reply(`Couldn't Add Invite Send`);
 		const code = await client.groupInviteCode(message.from);
 		return await client.sendMessage(users, { text : `https://chat.whatsapp.com/${code}`}, { quoted : text })
-	    } else if (su == '408') {
+	    } else if (su == 408) {
 		message.reply(`Couldn't add @${users.split('@')[0]} because they left the group recently. Try again later.`);
 		const code = await client.groupInviteCode(message.from);
 		return await client.sendMessage(users, { text : `https://chat.whatsapp.com/${code}`}, { quoted : video })
-	    } else if (su == '401') {
+	    } else if (su == 401) {
 		 return message.reply(`Couldn't add @${users.split('@')[0]} because they blocked the bot number.`);
-	    } else if (su == '200') {
+	    } else if (su == 200) {
 		return await client.sendMessage(message.from, { text : '_'+message.quoted.sender.split('@')[0] +' added to the group_'}, { quoted : gclink })
-	    } else if (su == '409') {
+	    } else if (su == 409) {
 		return message.reply(`@${users.split('@')[0]}, Already in Group`);
 	    } else {
 		return await message.reply(JSON.stringify(su));
