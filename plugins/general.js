@@ -79,7 +79,7 @@ inrl(
                 category: ["system", "all"],
                 type : "utility"
 	   },
-	async (message, client), match => {
+	async (message, client, match) => {
 try{
 let pp, from , cap;
 if(!message.client.isCreator) return await client.sendMessage( message.from, { text: "sorry about thets this cmd only for owner"});
